@@ -33,4 +33,70 @@ The dataset can be found in [data/archive.zip](data/archive.zip)
 
 Or in [kaggle](https://www.kaggle.com/datasets/mrmorj/fraud-detection-in-electricity-and-gas-consumption?select=client_train.csv)
 
+# Installation and Setup
+
+This project uses Pipenv for dependency management and virtual environment creation. Follow these steps to set up the environment and install the required dependencies:
+
+## Prerequisites
+
+1. Ensure you have Python 3.7 or later installed.
+
+```bash
+python --version
+```
+
+2. Install Pipenv if it's not already installed:
+
+```bash
+pip install pipenv
+```
+
+3. Install the dependencies
+
+```bash
+pipenv install
+```
+
+4. Activate the virtual environment
+
+```bash
+pipenv shell
+```
+
+5. Unzip data/archive.zip
+
+```bash
+unzip data/archive.zip
+```
+
+6. Run the train script
+
+```bash
+python3 train.py
+```
+
+7. Run the prection service
+
+```bash
 gunicorn --bind 0.0.0.0:9696 predict:app
+```
+
+8. Deactivating the environment
+
+```bash
+exit
+```
+
+# Docker
+
+1. Build the Docker image
+
+```bash
+docker build -t ml-zoomcamp-midterm .
+```
+
+2. Run the Docker image
+
+```bash
+docker run -p 9696:9696 -d ml-zoomcamp-midterm
+```

@@ -163,3 +163,7 @@ cython_debug/
 
 *.csv
 *.bin
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
