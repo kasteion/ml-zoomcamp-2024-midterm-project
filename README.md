@@ -26,3 +26,11 @@ This solution will be used by operational teams to:
 
 1. **Prioritize Investigations**: Identify high-risk clients who need further review or monitoring.
 2. **Improve Resource Allocation**: Focus efforts on clients most likely to be fraudulent, optimizing the use of investigative resources.
+
+# Dataset
+
+The dataset can be found in [data/archive.zip](data/archive.zip)
+
+Or in [kaggle](https://www.kaggle.com/datasets/mrmorj/fraud-detection-in-electricity-and-gas-consumption?select=client_train.csv)
+
+gunicorn --bind 0.0.0.0:9696 predict:app

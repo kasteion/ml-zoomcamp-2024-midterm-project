@@ -23,7 +23,8 @@ max_depth=20
 min_samples_leaf=5
 
 # Output file
-output_file = f'model_d={max_depth}s={min_samples_leaf}.bin'
+output_dv = 'dv.bin'
+output_model = f'model_d={max_depth}s={min_samples_leaf}.bin'
 
 # Load data
 df_clients = pd.concat([pd.read_csv('data/client_train.csv')])
@@ -88,5 +89,8 @@ X_train = dv.fit_transform(dicts)
 dt = DecisionTreeClassifier(max_depth=max_depth, min_samples_leaf=min_samples_leaf)
 dt.fit(X_train, y_clients_full_train)
 
-with open(output_file, 'wb') as file:
-    pickle.dump((dv, dt), file)
+with open(output_dv, 'wb') as file:
+    pickle.dump(dv, file)
+
+with open(output_model, 'wb') as file:
+    pickle.dump(dt, file)
