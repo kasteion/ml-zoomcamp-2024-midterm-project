@@ -100,3 +100,55 @@ docker build -t ml-zoomcamp-midterm .
 ```bash
 docker run -p 9696:9696 -d ml-zoomcamp-midterm
 ```
+
+# Deployment
+
+1. Install aws elastic beanstalk cli
+
+```bash
+pipenv install awsebcli
+```
+
+2. Initialize elastic beanstalsk application
+
+```bash
+eb init -p docker -r us-east-1 fraud-service
+```
+
+3. Create elastic beanstalk environment
+
+```bash
+eb create fraud-service-dev
+```
+
+4. To terminate the elastic beanstalk environment run
+
+```bash
+eb terminate fraud-service-dev
+```
+
+## URL for testing
+
+> http://fraud-service-dev.eba-enrjx8jr.us-east-1.elasticbeanstalk.com/predict
+
+Example code for testing the deployment:
+
+```python
+import requests
+
+url = "http://fraud-service-dev.eba-enrjx8jr.us-east-1.elasticbeanstalk.com/predict"
+client = {
+ 'client_catg':  'client_catg_11',
+ 'region': 'region_103',
+ 'district': 'district_69',
+ 'age_months': 196,
+ 'consumption_level_1_mean': 934.4594594594595,
+ 'consumption_level_1_std': 302.84719236262026,
+ 'consumption_level_1_min': 165.0,
+ 'consumption_level_1_max': 2090.0,
+ 'consumption_level_2_mean': 79.97297297297297,
+ 'consumption_level_2_std': 125.50375967951595,
+ 'consumption_level_2_max': 400.0
+}
+requests.post(url, json=client).json()
+```
